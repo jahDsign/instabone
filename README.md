@@ -5,6 +5,8 @@ A BackboneJS Single Page Application interacting with Instagram's API
 [http://jahdsign.com/instabone](http://jahdsign.com/instabone)
 
 ## Details
+Tha application allows users to view the Burberry's Instagram feed by batches of 20 images.
+
 The application is composed of 2 pages and a navigation:
 
 - Navigation:

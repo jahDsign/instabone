@@ -27,22 +27,22 @@ The application is composed of 2 pages and a navigation:
 
 ## Application's structure
 ```
-index.html (web application)
+index.html	(web application)
   - [css]	(css files folder)
-    - reset.css (reset elements styles)
-    - instabone.css (application's styles)
+    - reset.css	(reset elements styles)
+    - instabone.css	(application's styles)
   - [img]	(images folder)
   - [js]	(javascript files folder)
-    - app.js (main application's scripts)
+    - app.js	(main application's scripts)
     - [vendor]	(vendor scripts folder)
     - [models]	(models files folder)
-      - instabone.js (contains application's models)
+      - instabone.js	(contains application's models)
     - [collections]	(collections files folder)
-      - instabone.js (contains application's collections)
+      - instabone.js	(contains application's collections)
     - [views]	(views files folder)
-      - instabone.js (contains application's views)
+      - instabone.js	(contains application's views)
     - [utility]	(utility files folder)
-      - instabone.js (contains application's utility scripts)
+      - instabone.js	(contains application's utility scripts)
 ```
 
 ## Potential Further Improvements

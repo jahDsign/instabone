@@ -83,6 +83,7 @@ app.views.InstaFeed = Backbone.View.extend({
 
 //InstaFeedList view
 app.views.InstaFeedList = Backbone.View.extend({
+	$cachedItemsList: $('<ul />'),
 	render: function() {
 		var template = _.template($('#template-insta-feed-item').html()),
 			//get items list
@@ -107,7 +108,6 @@ app.views.InstaFeedList = Backbone.View.extend({
 		//render element html
 		this.$el.html(this.getItemsList().html());
 	},
-	$cachedItemsList: $('<ul />'),
 	setItemsList: function($ul) {
 		//keep items in cache
 		$cachedItemsList = $ul;

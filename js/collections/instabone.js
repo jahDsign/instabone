@@ -3,7 +3,8 @@
 //InstagramItems collection
 app.collections.InstagramItems = Backbone.Collection.extend({
 	//set instagram URL
-	url: 'https://api.instagram.com/v1/users/1889387/media/recent/?client_id=bbc139b43a9c4a47bc5abee948d60bc4&callback=?',
+	url: 'https://api.instagram.com/v1/users/1889387/media/recent/?client_id=bbc139b43a9c4a47bc5abee948d60bc4&callback=?',,
+	model: app.models.InstagramItem,
 	initialize: function() {
 		this.getData();
 	},
@@ -26,10 +27,11 @@ app.collections.InstagramItems = Backbone.Collection.extend({
 				from: 'From: '+entry.caption.from.full_name
 			});
 		}
-		//modify url to next or notify of end of feed
+		//modify url to next
 		if(nextUrl) {
 			this.url = response.pagination.next_url+'&callback=?';
 		} else {
+			//else, notify of end of feed
 			this.trigger('instagramItems.endOfFeed');
 		}
 		//trigger success
@@ -37,6 +39,5 @@ app.collections.InstagramItems = Backbone.Collection.extend({
 	},
 	fetchError: function() {
 		console.log('[collections/instabone.js / fetchError()]');
-	},
-	model: app.models.InstagramItem
+	}
 });

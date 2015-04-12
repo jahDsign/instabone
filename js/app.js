@@ -17,7 +17,6 @@ var app = (function() {
 				'*path': 'indexPage'
 			},
 			indexPage: function() {
-				app.$main.empty();
 				ViewsFactory.indexPage();
 			},
 			loadInstaFeed: function() {
@@ -45,6 +44,7 @@ var app = (function() {
 					});
 				}
 				else {
+					//else, call render method
 					app.indexPageView.render();
 				}
 				return app.indexPageView;
@@ -69,7 +69,6 @@ var app = (function() {
 
 	//init function
 	api.init = function() {
-		console.log('[app.js / init() :: this]\n', this);
 		//cache main content
 		this.$main = $('#main-content');
 		//render main nav
@@ -77,6 +76,8 @@ var app = (function() {
 		//init router
 		this.router = new Router();
 		Backbone.history.start();
+		//log app
+		console.log('[app.js / init() :: this]\n', this);
 		//return object
 		return this;
 	};

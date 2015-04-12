@@ -2,7 +2,7 @@
 A BackboneJS Single Page Application interacting with Instagram's API
 
 ## Live Link
-[http://jahdsign.com/instabone/#feed](http://jahdsign.com/instabone/#feed)
+[http://jahdsign.com/instabone](http://jahdsign.com/instabone)
 
 ## Details
 The application is composed of 2 pages and a navigation:

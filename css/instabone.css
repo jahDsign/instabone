@@ -187,12 +187,13 @@
 
 	/* SHARED */
 
-		.wrapper,
+		.wrapper {
+			padding:10px;
+		}
 		.main-header,
 		.main-footer,
 		.main-nav,
 		.main-content {
-			padding:10px;
 			margin: 10px 0;
 		}
 

@@ -75,7 +75,7 @@
 /* MAIN-HEADER */
 
 	.main-header {
-		margin-top: 0;
+		margin-top: 0!important;
 	}
 	.main-header h1,
 	.main-header h2 {
@@ -174,7 +174,7 @@
 /* MAIN-FOOTER */
 
 	.main-footer {
-		margin-bottom: 0;
+		margin-bottom: 0!important;
 		text-align: center;
 	}
 
@@ -186,15 +186,17 @@
 @media (min-width: 415px) {
 
 	/* SHARED */
-
-		.wrapper {
-			padding:10px;
-		}
 		.main-header,
 		.main-footer,
 		.main-nav,
 		.main-content {
 			margin: 10px 0;
+		}
+
+
+	/* WRAPPER */
+		.wrapper {
+			padding:10px;
 		}
 
 

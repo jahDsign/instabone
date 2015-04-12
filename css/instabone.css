@@ -1,14 +1,19 @@
 /* SHARED */
+
 	.wrapper,
 	.main-header,
 	.main-footer,
 	.main-nav,
 	.main-content {
 		position: relative;
-		padding:10px;
-		margin: 10px 0;
 		color:#222;
-	}	
+	}
+	.main-header,
+	.main-footer,
+	.main-nav,
+	.main-content {
+		padding: 10px;
+	}
 	.main-header,
 	.main-footer {
 		background: #00B6F8;
@@ -40,9 +45,10 @@
 		margin: 10px 0;
 	}
 	.wrapper a {
-		color:#222;
+		color:#00B6F8;
 	}
 	.wrapper .link-button {
+		display: inline-block;
 		text-decoration: none;
 		text-transform: uppercase;
 		font-weight: 700;
@@ -110,7 +116,6 @@
 
 	.insta-feed {
 		position: relative;
-		margin: 10px;
 	}
 	.insta-feed-list {
 		text-align: center;
@@ -121,7 +126,7 @@
 	}
 	.insta-feed-item {
 		display: inline-block;
-		margin: 10px;
+		margin: 10px 0;
 		padding: 10px;
 		line-height: 0;
 		background: #fff;
@@ -143,6 +148,9 @@
 		text-align: left;
 		line-height: 1.618;
 		display: block;
+	}
+	.insta-feed-text {
+		color: #222;
 	}
 	.insta-feed-from {
 		margin-top: 10px;
@@ -177,20 +185,40 @@
 
 @media (min-width: 415px) {
 
+	/* SHARED */
+
+		.wrapper,
+		.main-header,
+		.main-footer,
+		.main-nav,
+		.main-content {
+			padding:10px;
+			margin: 10px 0;
+		}
+
+
+	/* INSTA-FEED */
+
+		.insta-feed {
+			margin: 10px;
+		}
+
+
 	/* WRAPPER */
 
-	.wrapper h1 {
-		font-size: 28px;
-	}
-	.wrapper h2 {
-		font-size: 22px;
-	}
+		.wrapper h1 {
+			font-size: 28px;
+		}
+		.wrapper h2 {
+			font-size: 22px;
+		}
 
 
 	/* INSTA-FEED */
 
 		.insta-feed-item {
 			width:326px;
+			margin: 10px;
 		}
 		.insta-feed-img {
 			width: 306px;

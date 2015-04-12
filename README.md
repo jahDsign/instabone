@@ -1,2 +1,2 @@
-# instabone
-Playing around with Instagram API and BackboneJS
+# INSTABONE
+A BackboneJS implementation interacting with Instagram's API

@@ -13,6 +13,19 @@ app.views.MainNav = Backbone.View.extend({
 	}
 });
 
+//IndexPage
+app.views.IndexPage = Backbone.View.extend({
+	template: _.template($('#template-index-page').html()),
+	initialize: function() {
+		//call render method
+		this.render();
+	},
+	render: function() {
+		//render element html
+		this.$el.html(this.template({}));
+	}
+});
+
 //InstaFeed view
 app.views.InstaFeed = Backbone.View.extend({
 	template: _.template($('#template-insta-feed').html()),
@@ -21,47 +34,86 @@ app.views.InstaFeed = Backbone.View.extend({
 	},
 	initialize: function() {
 		//define nested view
-		this.nestedView = new app.views.InstaFeedList({
+		this.instaFeedListView = new app.views.InstaFeedList({
 			model: app.instagramItems
 		});
+		//render view
 		this.render();
-		//add event listener for AIP call success
-		this.listenTo(app.instagramItems, 'fetchSuccess', function() {
-			//call nested view
-			this.renderNested(this.nestedView,$('#insta-feed-list'));
+		//add event listeners
+		//fetchSuccess
+		this.listenTo(app.instagramItems, 'instagramItems.fetchSuccess', function() {
+			//render instaFeedList
+			this.renderInstaFeedList();
+		});
+		//endOfFeed
+		this.listenTo(app.instagramItems, 'instagramItems.endOfFeed', function() {
+			//remove load more
+			this.removeLoadMore();
 		});
 	},
 	render: function() {
 		//render element html
 		this.$el.html(this.template({}));
+		//cache instaFeeedList container
+		this.$instaFeedList = $('#insta-feed-list');
 	},
-	renderNested: function(view, selector) {
-		var $element = (selector instanceof $) ? selector : this.$(selector);
-		view.setElement($element).render();
+	refresh: function() {
+		//render element html
+		this.render();
+		//refresh instaFeedListView
+		this.instaFeedListView.setElement(this.$instaFeedList).refresh();
+		//check endOfFeed
+		if(this.endOfFeed) {
+			this.removeLoadMore();
+		}
+	},
+	renderInstaFeedList: function() {
+		//render instaFeedListView
+		this.instaFeedListView.setElement(this.$instaFeedList).render();
 	},
 	loadMore: function() {
-		console.log('load more');
+		//get next set of data
+		app.instagramItems.getData();
+	},
+	removeLoadMore: function() {
+		$('#insta-feed-load-more').remove();
+		this.endOfFeed = true;
 	}
 });
 
 //InstaFeedList view
 app.views.InstaFeedList = Backbone.View.extend({
-	initialize: function() {
-		this.render();
-	},
 	render: function() {
 		var template = _.template($('#template-insta-feed-item').html()),
-			//create list element holder
-			$instaFeedList = $('<ul />');
-		//loop through models
+			//get items list
+			$ul = this.getItemsList();
+		//loop through model and add items
 		this.model.each(function(instagramItem) {
-			$instaFeedList.append(
+			$ul.append(
 				template({
-					imgUrl: instagramItem.get('imgUrl')
+					link: instagramItem.get('link'),
+					imgUrl: instagramItem.get('imgUrl'),
+					text: instagramItem.get('text'),
+					from: instagramItem.get('from')
 				})
 			);
 		});
+		//cache items
+		this.setItemsList($ul);
+		//refresh view
+		this.refresh();
+	},
+	refresh: function() {
 		//render element html
-		this.$el.html($instaFeedList.html());
+		this.$el.html(this.getItemsList().html());
+	},
+	$cachedItemsList: $('<ul />'),
+	setItemsList: function($ul) {
+		//keep items in cache
+		$cachedItemsList = $ul;
+	},
+	getItemsList: function() {
+		//return cached items
+		return this.$cachedItemsList;
 	}
 });

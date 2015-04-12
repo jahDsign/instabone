@@ -3,6 +3,9 @@
 //Instabone model
 app.models.InstagramItem = Backbone.Model.extend({
 	default: {
-		imgUrl: ''
+		link: '',
+		imgUrl: '',
+		text: '',
+		from: ''
 	}
 });

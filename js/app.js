@@ -9,50 +9,69 @@ var app = (function() {
 			collections: {}
 		};
 
-	//views factory
-	var ViewsFactory = {
-			//mainNav
-			mainNav: function() {
-				//create mainNav view once
-				if(!this.mainNavView) {
-					this.mainNavView = new api.views.MainNav({
-						el: $('#main-nav')
-					});
-				}
-				return this.mainNavView;
-			},
-			//instaFeed
-			instaFeed: function() {
-				if(!this.instaFeedView) {
-					this.instaFeedView = new api.views.InstaFeed({
-						el: $('#main-content')
-					});
-				}
-				return this.instaFeedView;
-			}
-		};
-
 	//router
 	var Router = Backbone.Router.extend({
 		//define routes and actions
 			routes: {
-				'': 'index',
-				'item-2': 'action2',
-				'item-3/:param': 'action3'
+				'feed': 'loadInstaFeed',
+				'*path': 'indexPage'
 			},
-			index: function() {
+			indexPage: function() {
+				app.$main.empty();
+				ViewsFactory.indexPage();
+			},
+			loadInstaFeed: function() {
 				ViewsFactory.instaFeed();
-			},
-			action2: function() {
-				$('#main-content').empty();
 			}
 		});
 
+	//views factory
+	var ViewsFactory = {
+			//mainNav
+			mainNav: function() {
+				//create and cache view
+				if(!app.mainNavView) {
+					app.mainNavView = new app.views.MainNav({
+						el: $('#main-nav')
+					});
+				}
+				return app.mainNavView;
+			},
+			indexPage: function() {
+				//create and cache view
+				if(!app.indexPageView) {
+					app.indexPageView = new app.views.IndexPage({
+						el: app.$main
+					});
+				}
+				else {
+					app.indexPageView.render();
+				}
+				return app.indexPageView;
+			},
+			//instaFeed
+			instaFeed: function() {
+				if(!app.instaFeedView) {
+					//create and cache collection
+					app.instagramItems = new app.collections.InstagramItems();
+					//create and cache view
+					app.instaFeedView = new app.views.InstaFeed({
+						el: app.$main
+					});
+				}
+				else {
+					//else, call refresh method
+					app.instaFeedView.refresh();
+				}
+				return app.instaFeedView;
+			}
+		};
+
 	//init function
 	api.init = function() {
-console.log('[app.js / init() :: this]\n', this);
-		//reference instagramItems collection
-		this.instagramItems = new api.collections.InstagramItems();
+		console.log('[app.js / init() :: this]\n', this);
+		//cache main content
+		this.$main = $('#main-content');
 		//render main nav
 		ViewsFactory.mainNav();
 		//init router

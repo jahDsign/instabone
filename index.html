@@ -1,17 +1,21 @@
 <!doctype html>
 <html>
 	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>instabone</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
 		<link rel="stylesheet" type="text/css" href="css/instabone.css" />
 	</head>
-	<body>
+	<body><a id="top" name="top"></a>
 		<!-- wrapper -->
 		<div class="wrapper">
 			<!-- main -->
-			<div class="main">
+			<div id="main" class="main">
 				<!-- main-header -->
 				<header class="main-header">
-					<p>Main Header</p>
+					<h1>Instabone</h1>
+					<h2>A BackboneJS implementation interacting with Instagram's API</h2>
 				</header>
 				<!-- /main-header -->
 				<!-- main-nav -->
@@ -24,7 +28,7 @@
 				<!-- /main-content -->
 				<!-- main-footer -->
 				<footer class="main-footer">
-					<p>Main Footer</p>
+					<p>Instabone by Antoine Bisch ©</p>
 				</footer>
 				<!-- /main-footer -->
 			</div>
@@ -36,21 +40,42 @@
 		<!-- template-main-nav -->
 		<script type="text/template" id="template-main-nav">
 			<ul class="main-nav-list">
-				<li class="main-nav-item"><a href="#">menu item 1</a></li>
-				<li class="main-nav-item"><a href="#item-2">menu item 2</a></li>
+				<li class="main-nav-item"><a class="link-button" href="#">Home</a></li>
+				<li class="main-nav-item"><a class="link-button" href="#feed">Feed</a></li>
 			</ul>
 		</script>
 		<!-- /template-main-nav -->
+
+		<!-- template-index-page -->
+		<script type="text/template" id="template-index-page">
+			<h1 class="main-title">Welcome to instabone!</h1>
+			<p><a class="link-button" href="#feed">View Feed</a></p>
+		</script>
+		<!-- /template-index-page -->
+
 		<!-- template-insta-feed -->
 		<script type="text/template" id="template-insta-feed">
-			<ul id="insta-feed-list" class="insta-feed-list"></ul>
-			<button id="insta-feed-load-more" class="button" type="button">Load More</button>
+			<div class="insta-feed">
+				<h1>Burberry's Innstagram feed</h1>
+				<ul id="insta-feed-list" class="insta-feed-list"></ul>
+				<div class="insta-feed-link-container">
+					<button id="insta-feed-load-more" class="insta-feed-link link-button" type="button">Load More</button>
+				</div>
+				<p class="insta-feed-link-container"><a class="link-to-top insta-feed-link link-button" href="#top">Top of page</a></p>
+			</div>
 		</script>
 		<!-- /template-insta-feed -->
+
 		<!-- template-insta-feed-item -->
 		<script type="text/template" id="template-insta-feed-item">
 			<li class="insta-feed-item">
-				<img src="<%= imgUrl %>" />
+				<a class="insta-feed-link" href="<%= link %>" target="_blank">
+					<img class="insta-feed-img js-loading" src="<%= imgUrl %>" />
+					<p class="insta-feed-caption-container">
+					<span class="insta-feed-text insta-feed-caption"><%= text %></span>
+					<span class="insta-feed-from insta-feed-caption"><%= from %></span>
+					</p>
+				</a>
 			</li>
 		</script>
 		<!-- /template-insta-feed-item -->
@@ -61,6 +86,7 @@
 		<script src="js/vendor/underscore-min.js"></script>
 		<script src="js/vendor/backbone-min.js"></script>
 		<script src="js/app.js"></script>
+		<script src="js/utility/instabone.js"></script>
 		<script src="js/models/instabone.js"></script>
 		<script src="js/collections/instabone.js"></script>
 		<script src="js/views/instabone.js"></script>

@@ -16,7 +16,7 @@ The application is composed of 2 pages and a navigation:
   - If **IndexPage view** has already been instanciated, it refreshes the view into the page
 
 - Feed Page:
-  - Generated from the template **template-insta-feed** and **template-insta-feed-item** located in **index.html**
+  - Generated from the template **template-insta-feed** and **template-insta-feed-item** located in **index.html** and the **InstaFeed view** and **InstaFeedList nested view**
   - When Feed page is accessed, **app.js** instanciates **InstagramItems collection** which fetches the Instagram API's data and instanciates **InstaFeed view**
   - The data is parsed and added to **InstagramItem model**
   - The collection is prepared for the next call and triggers notifications if the feed ends and when the model is ready
@@ -28,21 +28,21 @@ The application is composed of 2 pages and a navigation:
 ## Application's structure
 ```
 index.html (web application)
-  - [css] *(css files folder)*
-    - reset.css *(reset elements styles)*
-    - instabone.css *(application's styles)*
-  - [img] *(images folder)*
-  - [js] *(javascript files folder)*
-    - app.js *(main application's scripts)*
-    - [vendor] *(vendor scripts folder)*
-    - [models] *(models files folder)*
-      - instabone.js *(contains application's models)*
-    - [collections] *(collections files folder)*
-      - instabone.js *(contains application's collections)*
-    - [views] *(views files folder)*
-      - instabone.js *(contains application's views)*
-    - [utility] *(utility files folder)*
-      - instabone.js *(contains application's utility scripts)*
+  - [css] *css files folder*
+    - reset.css *reset elements styles*
+    - instabone.css *application's styles*
+  - [img] *images folder*
+  - [js] *javascript files folder*
+    - app.js *main application's scripts*
+    - [vendor] *vendor scripts folder*
+    - [models] *models files folder*
+      - instabone.js *contains application's models*
+    - [collections] *collections files folder*
+      - instabone.js *contains application's collections*
+    - [views] *views files folder*
+      - instabone.js *contains application's views*
+    - [utility] *utility files folder*
+      - instabone.js *contains application's utility scripts*
 ```
 
 ## Potential Further Improvements
